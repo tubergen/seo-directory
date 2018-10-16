@@ -11,6 +11,10 @@ module SeoDirectory
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    extra_load_paths = %W[#{config.root}/lib]
+    config.autoload_paths += extra_load_paths
+    config.eager_load_paths += extra_load_paths
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

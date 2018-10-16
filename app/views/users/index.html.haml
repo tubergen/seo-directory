@@ -1,0 +1,8 @@
+- ('A'..'Z').each do |letter|
+  = link_to letter, users_path(page: letter)
+  &nbsp;
+
+%div
+  - @dividing_user_pairs.each do |dividing_user_pair|
+    %div
+      = link_to dividing_user_pair.label, dividing_user_pair.url

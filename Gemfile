@@ -60,3 +60,17 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# For generating fake names
+gem 'faker'
+
+# HAML templates
+gem 'haml', git: 'https://github.com/haml/haml'
+
+# Bootstrap
+gem 'bootstrap-sass', '3.3.7'
+
+# Used to provide view context to presenters. Don't `require: false` on this one, shit breaks.
+gem 'draper', '~> 3'
+
+gem "possessive"
