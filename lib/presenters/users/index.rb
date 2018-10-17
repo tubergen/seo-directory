@@ -156,3 +156,70 @@ module Presenters
     end
   end
 end
+
+
+
+#
+# users 20,000
+# max links 10
+#
+# -------------
+#
+# first page has buckets (zero level)
+# has bucket size 2000
+#
+# 0-1999
+# 2000-3999
+# etc
+#
+# -------------
+# suppose we click into the 0-2000 bucket (first level)
+# has bucket size 200
+#
+# 0-199
+# 200-400
+# etc
+#
+# -------------
+#
+# suppose we click into the 2001-4000 bucket (first level)
+# has buckets size 200
+#
+# 4000-4199
+# 4200-4400
+# etc
+#
+# -------------
+#
+# suppose we click into the 4201-4400 bucket (second level)
+# V-2-2
+# has bucket size 20
+#
+# 4200-4219
+# 4220-4239
+# etc
+#
+# problem we want to solve: what's the start index and end index?
+#
+# start_index = level_0_bucket_size * dividing_char_1 + level_1_bucket_size * dividing_char_2
+#
+# where
+# level_0_bucket_size = 2000
+# level_1_bucket_size = 200
+# dividing_char_1 = 2
+# dividing_char_2 = 2
+#
+# start_index = 2000 * 2 + 200 * 2 = 4200
+#
+# end_index = start_index + this_bucket_size - 1
+# this_bucket_size = User.count / max_links^depth
+#
+# where
+# depth = num_dividing_chars + 1 = 3
+# max_links = 10
+# User.count = 2000
+#
+# this_bucket_size = 20000 / 10^3 = 20
+#
+# end_index = 4200 + 20 - 1 = 4219
+
